@@ -1,89 +1,208 @@
-<!-- HTML header for doxygen 1.8.10-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.10"/>
-<title>Shardcache: Main Page</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="dynsections.js"></script>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/searchdata.js"></script>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { init_search(); });
-</script>
-<link href="stylesheet.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr style="height: 56px;">
-  <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Shardcache
-   </div>
-  </td>
- </tr>
- </tbody>
-</table>
+<html>
+    <head>
+		<meta charset="utf8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Shardcache</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/metathon-style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="gradient"> </div>
+		<div class="container-fluid">
+			<div class="row header">
+				<div class="col-md-12">
+					<a href="#" class="logo">Shardcache</a>
+                    <a href="https://github.com/Shardcached/shardcached">Github Project</a>
+                    <a href="https://github.com/shardcached/">Github Organization</a>
+                    <a href="api">API Reference</a>
+				</div>
+			</div>
+
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="project-box-wide ">
+
+
+<a id="Shardcache_0"></a>
+<p>Shardcache is a distributed cache and storage system, originally inspired by
+<a href="https://github.com/golang/groupcache">groupcache</a>, intended as a replacement
+for <a href="http://memcached.org">memcached</a>. Note that shardcache does not include
+code from those projects, and also the protocol for node and communication
+is different.</p>
+
+<h2><a id="Key_Features_9"></a>Key Features</h2>
+<p>The project is divided into a <code>libshardcache</code> library, implementing both
+a client and a node, and a <code>shardcached</code> daemon, which implements a shardcache
+node and an optional HTTP frontend to the cache.</p>
+<h3><a id="libshardcache_16"></a>libshardcache</h3>
+<ul>
+<li>
+<p>Cache filling algorithm based on adaptive replacement that minimizes access to the
+underlying storage</p>
+</li>
+<li>
+<p>Automatically connects to its own peers and handles intra-node communication</p>
+</li>
+<li>
+<p>Ensures the items are fetched from the peers or from the storage only once
+even when multiple concurrent requests are accessing the same uncached item</p>
+</li>
+<li>
+<p>Supports SET operations. If the node which receives the SET operation is
+responsible for the specified KEY, the new value will be provided to the
+underlying storage (and to next GET requests). If the receiving node is not
+the responsible for the key, the request will be forwarded (through the
+internal communication channel) to the responsible peer which will eventually
+store the new value and make it available to all the shardcache nodes.</p>
+</li>
+<li>
+<p>Supports DEL operations. If the node which receives the DEL operation is
+responsible for the specified KEY, the key will be removed from the underlying
+storage and from the cache. If evict-on-delete is turned on (it is by default)
+an evict command will be sent to all other peers to force eviction from their
+cache. If the receiving node is not responsible for the key, it will still be
+removed from the local cache (if present) and the request will be forwarded
+through the internal communication channel to the responsible peer which will
+eventually remove the key from its storage and from the cache.</p>
+</li>
+<li>
+<p>Supports EVICT operations. Evicts differ from deletes in the sense that the key
+is only unloaded from the cache but not removed from the storage. Forcing
+evictions might be very useful to force new values to be visible as soon as
+possible after being set.</p>
+</li>
+<li>
+<p>Supports migrations via the MGB (migration-begin), MGA (migration-abort) and MGE
+(migration-end) commands. The nodes automatically redistribute the keys taking
+the newly added ones into account.</p>
+<p>While the migration is in progress (and keys are being redistributed) the behaviour
+is the following:</p>
+<ul>
+<li>
+<p>If a get operation arrives, first the old continuum is checked, if not found
+the new continuum is checked.</p>
+</li>
+<li>
+<p>If a set/delete operation arrives the new continuum is used to determine the
+owner of the key.</p>
+</li>
+</ul>
+<p>Once the migration is completed the continua are swapped and the new continuum
+becomes the main one.</p>
+</li>
+<li>
+<p>Supports volatile keys, which have an expiration time and will be automatically
+removed when expired. Note that such keys are always kept in memory, regardless of
+the storage type, and are never passed to the storage backend. During a migration
+the volatile keys eventually not owned by a node will NOT be forwarded to the new
+owner but will be instead expired “prematurely” (since they won’t be anyway
+available anymore when switching to the new continuum)</p>
+</li>
+</ul>
+<h3><a id="shardcached_71"></a>shardcached</h3>
+<ul>
+<li>
+<p>Implements an <code>libshardcache</code> node with an HTTP frontend.</p>
+</li>
+<li>
+<p>Allows to define ACLs to control which IP addresses can access which keys.</p>
+</li>
+<li>
+<p>Exposes instrumentation counters and the cache index.</p>
+</li>
+<li>
+<p>Supports custom mime-type mappings to use when serving items over HTTP.</p>
+</li>
+<li>
+<p>Supports in-memory only or persistant storage.</p>
+</li>
+<li>
+<p>Provides an API to specify custom pluggable storage backends. Current support
+includes:</p>
+<ul>
+<li>sqlite</li>
+<li>mysql</li>
+<li>redis</li>
+</ul>
+</li>
+<li>
+<p>Supports migrations that can be initiated by new nodes at startup.</p>
+</li>
+</ul>
+<h1><a id="Getting_Started_91"></a>Getting Started</h1>
+<p>Shardcache development is done on GitHub. The latest release can be downloaded
+from the <a href="https://github.com/Shardcached/shardcached/releases">GitHub releases page</a>,
+or the latest development code can be cloned from the
+<a href="https://github.com/Shardcached/shardcached">repository</a>.</p>
+<p>The project is written in C, so it requires a working build environment. To compile,
+invoke <code>make</code> in the toplevel directory. The makefile will fetch or update the
+dependencies and build the daemon.</p>
+<h3><a id="Usage_103"></a>Usage</h3>
+<pre><code>Usage: ./shardcached [OPTION]...
+Version: 1.0 (libshardcache: 1.1)
+Possible options:
+    -a &lt;access_log_file&gt;  the path where to store the access_log file (defaults to './shardcached_access.log')
+    -c &lt;config_file&gt;      the config file to load
+    -d &lt;plugins_path&gt;     the path where to look for storage plugins (defaults to './')
+    -f                    run in foreground
+    -F                    force caching
+    -H                    disable the HTTP frontend
+    -i &lt;interval&gt;         change the time interval (in seconds) used to report internal stats via syslog (defaults to '0')
+    -l &lt;ip_address:port&gt;  ip_address:port where to listen for incoming http connections
+    -L                    enable lazy expiration
+    -M                    sets the arc_mode in libshardcache to 'loose' (defaults to : 'strict')
+    -E &lt;expire_time&gt;      set the expiration time for cached items (defaults to: 0)
+    -e &lt;conn_expire_time&gt; the expiration time for a connection in the pool to trigger a NOOP (defaults to 5000)
+    -r &lt;mux_timeout_low&gt;  set the low timeout passed to iomux_run() calls (in microsecs, defaults to: 100000)
+    -R &lt;mux_timeout_high&gt; set the high timeout pssed to iomux_run() calls (in microsecs, defaults to: 500000)
+    -b                    HTTP url basepath (optional, defaults to '')
+    -B                    HTTP url baseadminpath (optional, defaults to '')
+    -n &lt;nodes&gt;            list of nodes participating in the shardcache in the form : 'label:address:port,label2:address2:port2'
+    -N                    no storage subsystem, use only the internal libshardcache volatile storage
+    -m me                 the label of this node, to identify it among the ones participating in the shardcache
+    -P &lt;pipelining_max&gt;   the maximum amount of requests to handle ahead on the same connection while still serving a response (defaults to: 64)
+    -S                    shared secret used for message signing (defaults to : '')
+    -s                    cache size in bytes (defaults to : '536870912')
+    -T &lt;tcp_timeout&gt;      tcp timeout (in milliseconds) used for connections opened by libshardcache (defaults to '5000')
+    -t &lt;type&gt;             storage type (available are : 'mem' and 'fs' (defaults to 'mem')
+    -o &lt;options&gt;          comma-separated list of storage options (defaults to '')
+    -u &lt;username&gt;         assume the identity of &lt;username&gt; (only when run as root)
+    -v                    increase the log level (can be passed multiple times)
+    -V                    output the version number and exit
+    -w &lt;num_workers&gt;      number of shardcache worker threads (defaults to '10')
+    -W &lt;num_http_workers&gt; number of http worker threads (defaults to '10')
+    -x &lt;nodes&gt;            new list of nodes to migrate the shardcache to. The format to use is the same as for the '-n' option
+
+       Builtin storage types:
+         * mem            memory based storage
+            Options:
+              - initial_table_size=&lt;size&gt;    the initial number of slots in the internal hashtable
+              - max_table_size=&lt;size&gt;        the maximum number of slots that the internal hashtable can be grown up to
+
+         * fs             filesystem based storage
+            Options:
+              - storage_path=&lt;path&gt;          the path where to store the keys/values on the filesystem
+              - tmp_path=&lt;path&gt;              the path to a temporary directory to use while new data is being uploaded
+</code></pre>
+
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.8.10 -->
-<script type="text/javascript">
-var searchBox = new SearchBox("searchBox", "search",false,'Search');
-</script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.png"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-          </span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div><!-- top -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
 </div>
 
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
+	<div class="col-md-4 project-page">
+        <h3>Table of contents</h3>
+        <p><a href="#Key_Features_9">Key Features</a></p>
+        <p><a href="#Getting_Started_91">Getting Started</a></p>
+	</div>
+
 </div>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title">Shardcache Documentation</div>  </div>
-</div><!--header-->
-<div class="contents">
-</div><!-- contents -->
-<!-- HTML footer for doxygen 1.8.10-->
-<!-- start footer part -->
-<address class="footer"><small>
-Generated on Tue Aug 4 2015 05:55:15 for Shardcache by <a href="http://www.doxygen.org/index.html">doxygen</a> 1.8.10
-</small></address>
-</body>
-</html>
+
+			<div class="row footer">
+				<div class="col-md-12"></div>
+			</div>
+		</div>
+	</body>
+</html>	
