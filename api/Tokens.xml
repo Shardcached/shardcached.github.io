@@ -7359,6 +7359,16 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>LIBSHARDCACHE_BUILD_INFO</Name>
+      <APILanguage>c</APILanguage>
+      <Type>data</Type>
+    </TokenIdentifier>
+    <Path>shardcache_8h.html</Path>
+    <Anchor>abb492a4c7cba420ddf4fd996ae7472ec</Anchor>
+    <DeclaredIn>shardcache.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>SHARDCACHE_ARC_MODE_STRICT</Name>
       <APILanguage>c</APILanguage>
       <Type>econst</Type>

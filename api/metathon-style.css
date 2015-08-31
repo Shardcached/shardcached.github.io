@@ -1,0 +1,465 @@
+/* @override 
+	https://bzyglowicz-off.dev.booking.com/metathon/css/metathon.css */
+
+body {
+    padding:40px 60px 60px 60px;
+    /* Rectangle 17: */
+    background: #eeeeee;
+    /* Rectangle 20: */
+    font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 19px;
+    /* All projects 2: */
+
+    border-top: 2px solid #4C699F;
+}
+
+p{
+	margin-top: 0 0 15px;
+}
+
+b, strong{
+	font-weight: 600;
+}
+
+.gradient{
+	/* Rectangle 21: */
+	position: fixed;
+	height: 140px;
+	width: 100%;
+	left: 0;
+	top: 0;
+
+	background-image: -o-linear-gradient(-90deg, rgba(0,0,0,0.07) 0%, rgba(255,255,255,0.00) 100%);
+	background-image: -moz-linear-gradient(-90deg, rgba(0,0,0,0.07) 0%, rgba(255,255,255,0.00) 100%);
+	background-image: -ms-linear-gradient(-90deg, rgba(0,0,0,0.07) 0%, rgba(255,255,255,0.00) 100%);
+	background-image: linear-gradient(-180deg, rgba(0,0,0,0.07) 0%, rgba(255,255,255,0.00) 100%);
+}
+
+.container-fluid{
+	position: relative;
+	max-width: 1180px;
+}
+
+.next-hackathon{
+	display: block;
+	position: absolute;
+	top: -40px;
+	right: 15px;
+	padding: 20px;
+	text-align: center;
+	/* Rectangle 34: */
+	background-image: -o-linear-gradient(-89deg, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: -moz-linear-gradient(-89deg, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: -ms-linear-gradient(-89deg, #FFFFFF 0%, #EEEEEE 100%);
+	background-image: linear-gradient(-179deg, #FFFFFF 0%, #EEEEEE 100%);
+	-moz-box-shadow:    0px 1px 2px 0px rgba(0,0,0,0.17);
+	box-shadow:         0px 1px 2px 0px rgba(0,0,0,0.17);
+	
+	font-size: 12px;
+	color: #959595;
+
+	/* NEXT HACKATHON: */
+}
+.next-hackathon span{
+	font-size: 1.3em;
+}
+
+.form-group{
+	margin-bottom: 0px;
+	margin-top: 30px;
+}
+
+.header{
+	margin-bottom: 30px;
+}
+.header a{
+	display: inline-block;
+	margin-right: 30px;
+	
+	font-size: 14px;
+	/*color: #AAAAAA;*/
+
+	
+}
+.header a.logo{
+	/*background-image: url(logo.png);
+	background-repeat: no-repeat;*/
+	font-size: 20px;
+	color: #263D67;
+	line-height: 37px;
+	text-decoration: none;
+
+	padding-left: 50px;
+}
+
+/*
+.header a.logo:before{
+	content: 'Mt';
+	color:  White;
+	text-align: center;
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	top: 0px;
+	left: 15px;
+	font-size: 16px;
+	background-color: #263D67;
+	border-radius: 7px;
+	border-bottom-left-radius: 0px;
+}
+*/
+
+.header .navbar-form{
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+.header .input-group-btn .btn{
+	background: #fff; 
+	border-right: none;
+	box-shadow: none;
+	padding: 0px 6px;
+	height: 26px;
+	line-height: 13px;
+	color: #aaa;
+}
+.header .form-control{
+	border-left: none;
+	padding: 0;
+	border-radius: 2px;
+	height: 26px;
+	color: #aaa;
+}
+
+
+.navbar{
+	background: transparent;
+	border: none;
+	text-shadow: none;
+}
+
+.navbar-inverse .navbar-brand{
+	text-shadow: none;
+}
+
+.navbar-inverse .navbar-nav>.active>a{
+	background: transparent;
+	box-shadow: none;
+	color: Black;
+	text-shadow: none;
+}
+
+h1, h2, h3{
+	text-transform: uppercase;
+	font-size: 1.3em;
+	margin: 15px 0px;
+}
+h3 span{
+	text-transform: none;
+	font-weight: normal;
+	margin-left: 5px;
+}
+
+#s2id_skills{
+	margin: 6px 0px 0px;
+}
+#btnUpdate{
+	margin: 5px 0px 0px;
+
+}
+.select2-container-multi .select2-choices{
+	padding: 2px !important;
+}
+.select2-container-multi .select2-choices .select2-search-choice{
+	border-radius: 2px !important;
+	/* Rectangle 9: */
+	background: #FADF9E !important;
+	border: 1px solid #E0C278 !important;
+	-moz-box-shadow:    inset 0px 1px 2px 0px rgba(255,255,255,0.50) !important;
+	box-shadow:         inset 0px 1px 2px 0px rgba(255,255,255,0.50) !important;
+	color: #A59368 !important;
+	margin: 0px 2px 0px 0px !important;
+	padding: 7px 7px 7px 22px !important;
+}
+.select2-search-choice-close{
+	top: 6px !important;
+	left: 5px !important;
+}
+
+
+.project-box-small, .project-box-wide, .add-new-project {
+	-webkit-transition: all .2s; /* For Safari 3.1 to 6.0 */
+    transition: all .2s;
+    
+	/* Rectangle 21: */
+	background: #FFFFFF;
+	-moz-box-shadow:    0px 1px 2px 0px rgba(0,0,0,0.17);
+	box-shadow:         0px 1px 2px 0px rgba(0,0,0,0.17);
+	line-height: 30px;
+	padding: 20px;
+	margin: 10px 0px;
+}
+.project-box-small, .blueLine{
+	border-top: 2px solid #61B0FA !important;
+}
+.project-box-small:hover{
+	-moz-box-shadow:    0px 2px 5px 1px rgba(0,0,0,0.30);
+	box-shadow:         0px 2px 5px 1px rgba(0,0,0,0.30);
+}
+.add-new-project{
+	display: block;
+	text-align: center;
+	padding: 6px;
+	color: inherit;
+}
+
+.project-box-small a{
+	font-size: 18px;
+	color: #636363;
+	line-height: 24px;
+}
+.project-box-small p{
+	margin-bottom: 0px;
+}
+
+.project-box-small p a{
+	font-size: 14px;
+	color: #428bca;
+	line-height: 24px;
+}
+
+.project-box-small .ownership{
+	margin: 0;
+	text-transform: uppercase;
+}
+
+
+
+.project-box-wide{
+	margin: 10px 15px;
+	border-top: 2px solid #F6D891;
+}
+.project-box-wide h2,.project-box-wide h2 a{
+	display: block;
+	text-transform: none;
+	font-size: 22px;
+	/*color: #666;*/
+	line-height: 29px;
+	margin-bottom: 20px;
+	/* Human Settlement on : */
+}
+.project-box-wide h2 a{
+	text-decoration: underline;
+}
+.project-box-wide p{
+	
+	font-size: 15px;
+	color: #666;
+	line-height: 22px;
+	/* We will establish a : */
+}
+.project-box-wide h3{
+	font-size: 12px;
+	color: #222;
+	line-height: 16px;
+	/* 4 PEOPLE ON BOARD: */
+}
+.project-box-wide p.additional{
+	
+	font-size: 13px;
+	color: #888;
+	line-height: 16px;
+	/* Production, Document: */
+}
+
+.row.separator{
+	width: 100%;
+	height: 28px;
+	border-bottom: 1px solid #dedede;
+	margin: 10px auto 30px auto;
+}
+
+.projectListSidebar{
+	margin-top:24px;
+	padding-right:50px;
+}
+.projectListSidebar h3{
+	margin-top:0px;
+}
+
+.backlink{
+	/*color: #aaa;*/
+	display: inline-block;
+	margin-bottom: 20px;
+	margin-right: 30px;
+}
+
+.project-box-wide.project-page{
+	padding-top: 0;
+	margin: 0;
+	padding-right: 80px;
+}
+.project-box-wide.project-page h2{
+	text-transform: none;
+	margin-top: 25px;
+	font-size: 26px;
+	color: #666;
+	line-height: 34px;
+}
+.project-box-wide.project-page p a{
+	text-transform: none;
+	font-size: 14px;
+	display: inline;
+	text-align: left;
+	padding: 0;
+}
+
+.project-page h3{
+	font-size: 14px;
+	margin-top: 35px;
+	margin-bottom: 10px;
+	font-weight: 500;
+}
+
+.progress{
+	border-radius: 2px;
+	/* Rectangle 22: */
+	background: #FFFFFF;
+	-moz-box-shadow:    0px 1px 2px 1px rgba(0,0,0,0.17);
+	box-shadow:         0px 1px 2px 1px rgba(0,0,0,0.17);
+	height: 30px;
+}
+.progress .progress-bar-success{
+	height: 30px;
+	line-height: 30px;
+	border-radius: 3px;
+}
+
+
+
+ul.people, ul.skills{
+	list-style: none;
+	padding: 0;
+}
+
+ul.skills li{
+	display: inline-block;
+	padding: 5px 7px;
+	margin: 0 3px 3px 0;
+	border-radius: 2px;
+	/* Rectangle 8: */
+	background: #FADF9E;
+	border: 1px solid #E0C278;
+	-moz-box-shadow:    inset 0px 1px 2px 0px rgba(255,255,255,0.50);
+	box-shadow:         inset 0px 1px 2px 0px rgba(255,255,255,0.50);
+	
+	font-size: 15px;
+	color: #7f704e;
+	line-height: 16px;
+	/* Web/UX Designer: */
+}
+
+
+ul.people li{
+	margin: 7px 0px 7px 0px;
+}
+ul.people a{
+	/*color: #838383;*/
+}
+ul.people .badge{
+	background: transparent;
+	color: #aaa;
+	text-transform: uppercase;
+	font-weight: normal;
+	margin: 0;
+	padding: 2px 5px;
+}
+
+.footer{
+	text-align: center;
+	margin-top: 25px;
+	margin-bottom: 0px;
+	color: #bbb;
+}
+
+.form-actions.fixed{
+	z-index: 1000;
+}
+
+
+
+/* bootstrap overrides */
+form{
+	margin-bottom: 300px;
+}
+
+.create-form-action.fixed {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	min-height: 50px;
+	padding: 20px 0;
+	opacity: .8;
+	background: #fff;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	margin: 0 auto;
+	border-top: 1px solid #ccc;
+}
+.create-form-action.fixed:hover {
+	opacity: 1;
+}
+.create-form-action.fixed .btn {
+	width: 20%;
+	margin: 0 auto;
+}
+
+.edit-form-heading {
+	margin-left: -15px;
+}
+
+.close-options-list label {
+	font-weight: normal;
+}
+
+.slider.slider-horizontal {
+	margin-bottom: 29px;
+}
+
+.sort {
+	float: right;
+	text-align: right;
+}
+.sort p {
+	margin-bottom: 5px
+}
+
+.sort a {
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 5px;
+}
+.sort a {
+	font-size: 20px;
+}
+
+.project-box-wide p.not_found {
+	font-size: 20px;
+	text-align: center;
+	padding: 80px 40px;
+}
+
+form.project_add,
+form.project_edit {
+	margin-bottom: 50px;
+}
+.form-centered {
+	margin: 0 auto;
+	float: none;
+}
+
+/* bookstrap overrides */

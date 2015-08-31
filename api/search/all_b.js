@@ -4,6 +4,7 @@ var searchData=
   ['len',['len',['../fbuf_8h.html#a2d0aaa642870f83cc5f5d430491dbf88',1,'fbuf_t::len()'],['../hashtable_8h.html#ab9bcf4c3b19bb3bf1d0d1d53e41fec15',1,'hashtable_key_t::len()'],['../hashtable_8h.html#aa11c4d8c40cee0b2f5fd44817f1fbea0',1,'hashtable_value_t::len()']]],
   ['libhl_5fcmp_5fcallback_5ft',['libhl_cmp_callback_t',['../comparators_8h.html#af8c37076fd5d52dd9365633e3bacafa8',1,'comparators.h']]],
   ['libhl_5fcmp_5fkeys_5ftype',['LIBHL_CMP_KEYS_TYPE',['../comparators_8h.html#a3c3cf74be68bcb3843719d08733b961b',1,'comparators.h']]],
+  ['libshardcache_5fbuild_5finfo',['LIBSHARDCACHE_BUILD_INFO',['../shardcache_8h.html#abb492a4c7cba420ddf4fd996ae7472ec',1,'shardcache.h']]],
   ['libshardcache_5fversion',['LIBSHARDCACHE_VERSION',['../shardcache_8h.html#a212ce745de022f9dab442d5232cc1809',1,'shardcache.h']]],
   ['linked_5flist_5ft',['linked_list_t',['../linklist_8h.html#a4a0270278690b38e0be6fc777986be44',1,'linklist.h']]],
   ['linklist_2eh',['linklist.h',['../linklist_8h.html',1,'']]],
